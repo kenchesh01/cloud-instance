@@ -4,37 +4,30 @@ sudo echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDhj3oGhTRtgz/nCmIX1IZPCfnoR/nbL
 sudo apt-get update
 sudo apt-get install nagios-nrpe-server nagios-plugins -y
 sudo chmod 777 -R /etc/nagios/
-sudo echo " allowed_hosts=127.0.0.1,172.31.19.37" >> /etc/nagios/nrpe.cfg
+sudo echo " allowed_hosts=127.0.0.1,172.31.29.56" >> /etc/nagios/nrpe.cfg
 sudo service nagios-nrpe-server restart '
 
 
 
-ssh ubuntu@172.31.19.37 '
+ssh ubuntu@172.31.29.56 '
 sudo chmod 777 -R /usr/local/nagios/
 sudo echo " 
 define host {
         use                          linux-server
-        host_name                    nagios-slave
-        alias                        Ubuntu Host
-        address                     172.31.27.223
-        register                     1
-}
-define host {
-        use                          linux-server
-        host_name                    nagios-slave-2
+        host_name                    nagiosslave01
         alias                        Ubuntu Host
         address                       $ip
         register                     1
 }
 define service{
      use                     generic-service
-     host_name               nagios-slave-2,nagios-slave-2
+     host_name               nagios-slave01
      service_description     check-host-alive
       check_command          check-host-alive
 }
 
 define service {
-      host_name                       nagios-slave,nagios-slave-2
+      host_name                       nagiosslave01
       service_description             PING
       check_command                   check_ping!100.0,20%!500.0,60%
       max_check_attempts              2
@@ -49,7 +42,7 @@ define service {
       register                        1
 }
 define service {
-      host_name                       nagios-slave
+      host_name                       nagios-slave01
       service_description             Check SSH
       check_command                   check_ssh
       max_check_attempts              2
@@ -64,7 +57,7 @@ define service {
       register                        1
 }
 define service {
-      host_name                       nagios-slave
+      host_name                       nagios-slave01
       service_description             Total Process
       check_command                   check_local_procs!250!400!RSZDT
       max_check_attempts              2
@@ -80,7 +73,7 @@ define service {
 }
 
 define service {
-      host_name                       nagios-slave
+      host_name                       nagios-slave01
       service_description             Local Disk
       check_command                   check_local_disk!20%!10%!/
       max_check_attempts              2
