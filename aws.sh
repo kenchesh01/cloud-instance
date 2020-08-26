@@ -14,7 +14,7 @@ sudo chmod 777 -R /usr/local/nagios/
 sudo echo " 
 define host {
         use                          linux-server
-        host_name                    nagiosslave01
+        host_name                    nagios-slave01
         alias                        Ubuntu Host
         address                       $ip
         register                     1
@@ -27,7 +27,7 @@ define service{
 }
 
 define service {
-      host_name                       nagiosslave01
+      host_name                       nagios-slave01
       service_description             PING
       check_command                   check_ping!100.0,20%!500.0,60%
       max_check_attempts              2
