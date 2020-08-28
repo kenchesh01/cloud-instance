@@ -3,19 +3,19 @@ sudo chmod 777 -R /usr/local/nagios/
 sudo echo " 
 define host {
         use                          linux-server
-        host_name                    nagios-slave4
+        host_name                    nagios-slave5
         alias                        Ubuntu Host
         address                       $ip
         register                     1
 }
 define service{
      use                     generic-service
-     host_name               nagios-slave4
+     host_name               nagios-slave5
      service_description     check-host-alive
       check_command          check-host-alive
 }
 define service {
-      host_name                       nagios-slave4
+      host_name                       nagios-slave5
       service_description             PING
       check_command                   check_ping!100.0,20%!500.0,60%
       max_check_attempts              2
@@ -30,7 +30,7 @@ define service {
       register                        1
 }
 define service {
-      host_name                       nagios-slave4
+      host_name                       nagios-slave5
       service_description             Check SSH
       check_command                   check_ssh
       max_check_attempts              2
@@ -45,7 +45,7 @@ define service {
       register                        1
 }
 define service {
-      host_name                       nagios-slave4
+      host_name                       nagios-slave5
       service_description             Total Process
       check_command                   check_local_procs!250!400!RSZDT
       max_check_attempts              2
@@ -60,7 +60,7 @@ define service {
       register                        1
 }
 define service {
-      host_name                       nagios-slave4
+      host_name                       nagios-slave5
       service_description             Local Disk
       check_command                   check_local_disk!20%!10%!/
       max_check_attempts              2
@@ -74,6 +74,6 @@ define service {
       notifications_enabled           1
       register                        1
 }
-" >> /usr/local/nagios/etc/services/slave.cfg
+" >> /usr/local/nagios/etc/services/slave5.cfg
 sudo systemctl restart nagios
 '
