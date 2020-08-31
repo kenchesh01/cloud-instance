@@ -74,6 +74,6 @@ notification_period             24x7
 notifications_enabled           1
 register                        1
 }
-" >> /usr/local/nagios/etc/services/slave2.cfg
+" >> /usr/local/nagios/etc/services/slave3.cfg
 sudo systemctl restart nagios
 '
