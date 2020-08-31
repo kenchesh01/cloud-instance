@@ -1,4 +1,3 @@
-
 ssh ubuntu@172.31.29.56 '
 sudo chmod 777 -R /usr/local/nagios/
 sudo echo " 
@@ -61,7 +60,7 @@ define service {
       register                        1
 }
 define service {
-host_name                   abc
+host_name                   nagios-slave2
 service_description        Check Users
 check_command              check_local_users!20!50
 max_check_attempts           2
@@ -75,6 +74,6 @@ notification_period             24x7
 notifications_enabled           1
 register                        1
 }
-" >> /usr/local/nagios/etc/services/slave3.cfg
+" >> /usr/local/nagios/etc/services/slave2.cfg
 sudo systemctl restart nagios
 '
