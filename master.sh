@@ -59,6 +59,21 @@ define service {
       notifications_enabled           1
       register                        1
 }
+define service {
+host_name                   abc
+service_description        Check Users
+check_command              check_local_users!20!50
+max_check_attempts           2
+check_interval               2
+retry_interval                2
+check_period                 24x7
+check_freshness               1
+contact_groups                admins
+notification_interval             2
+notification_period             24x7
+notifications_enabled           1
+register                        1
+}
 " >> /usr/local/nagios/etc/services/slave2.cfg
 sudo systemctl restart nagios
 '
