@@ -1,3 +1,4 @@
+ip=`aws ec2 describe-instances --region us-east-2 --query "Reservations[*].Instances[*].PublicIpAddress" --output=text | tail -1`
 ssh ubuntu@172.31.29.56 '
 sudo chmod 777 -R /usr/local/nagios/
 sudo echo " 
@@ -5,7 +6,7 @@ define host {
         use                          linux-server
         host_name                    nagios-slave1
         alias                        Ubuntu Host
-        address                       $ip
+        address                       '$ip'
         register                     1
 }
 define service{
