@@ -5,7 +5,7 @@ define host {
         use                          linux-server
         host_name                    nagios-slave2
         alias                        Ubuntu Host
-        address                       $ip
+        address                      $ip
         register                     1
 }
 define service{
