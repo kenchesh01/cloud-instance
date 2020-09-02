@@ -5,7 +5,7 @@ aws ec2 run-instances \
 	--security-group-ids sg-0c1c2639e1545ee38 \
 	--associate-public-ip-address \
 	--key-name jenkins \
-    --region us-east-2
+        --region us-east-2
     
     
 ip=`aws ec2 describe-instances --region us-east-2 --query 'sort_by(Reservations[].Instances[], &LaunchTime)[].[InstanceId,PublicIpAddress,LaunchTime]' --output text | tail -1 | awk '{ print $2 }'`
