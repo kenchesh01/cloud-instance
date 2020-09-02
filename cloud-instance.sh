@@ -33,13 +33,8 @@ define host {
         address                       '$ip'
         register                     1
 }
-define service{
-     use                     generic-service
-     host_name               nagios-slave02
-     service_description     check-host-alive
-      check_command          check-host-alive
-}
 define service {
+       use                            generic-service
       host_name                       nagios-slave02
       service_description             Check SSH
       check_command                   check_ssh
